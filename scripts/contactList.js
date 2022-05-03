@@ -25,12 +25,15 @@ function getFullEmail(contactData) {
 }
 const fullEmail = getFullEmail(contactData[1]);
 
-function addNewContact(name, surname, email, server, cellNumber) {
-  return (
-    contactData.push('name'),
-    contactData.push('surname'),
-    contactData.push('email'),
-    contactData.push('server'),
-    contactData.push('cellNumber')
-  );
+function addNewContact() {
+  let newEntry = {
+    name: '',
+    surname: '',
+    email: '',
+    server: '',
+    cellNumber: '',
+  };
+
+  contactData.push(newEntry);
+  return alert('Contact added sucessfully!');
 }
