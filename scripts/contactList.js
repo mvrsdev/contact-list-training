@@ -51,3 +51,8 @@ function deleteContact () {
   return alert('Contact deleted sucessfully!');
 }
 
+function showAllContacts(contact) {
+  return contact.sort(contact.name);
+}
+const showAll = showAllContacts(contactData);
+
