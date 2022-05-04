@@ -37,3 +37,17 @@ function addNewContact() {
   contactData.push(newEntry);
   return alert('Contact added sucessfully!');
 }
+
+function deleteContact () {
+  let deleteEntry = {
+    name: '',
+    surname: '',
+    email: '',
+    server: '',
+    cellNumber: '',
+  };
+
+  contactData.pop(deleteEntry);
+  return alert('Contact deleted sucessfully!');
+}
+
