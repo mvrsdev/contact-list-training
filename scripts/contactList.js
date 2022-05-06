@@ -60,5 +60,3 @@ function searchContactInfo(contact) {
   return contact.name;
 }
 const searchContact = searchContactInfo(contactData[1]);
-
-console.log(searchContact);
