@@ -15,9 +15,9 @@ const contactData = [
   },
 ];
 
-function getContactFullName(contactData) {
+const getContactFullName = (contactData) => {
   return `${contactData.name} ${contactData.surname}`;
-}
+};
 const contactFullName = getContactFullName(contactData[1]);
 
 function getFullEmail(contactData) {
