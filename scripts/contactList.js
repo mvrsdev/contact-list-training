@@ -56,3 +56,9 @@ function showAllContacts(contact) {
 }
 const showAll = showAllContacts(contactData);
 
+function searchContactInfo(contact) {
+  return contact.name;
+}
+const searchContact = searchContactInfo(contactData[1]);
+
+console.log(searchContact);
