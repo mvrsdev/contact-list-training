@@ -1,19 +1,19 @@
 const contactData = [
   {
-    name: 'Marcus',
-    surname: 'Santos',
-    email: 'myemail',
-    server: '@server.com',
-    cellNumber: 11986628317,
-    id: 1,
-  },
-  {
     name: 'Thiago',
     surname: 'Dias',
     email: 'anothermail',
     server: '@server.com',
     cellNumber: 11989890909,
     id: 2,
+  },
+  {
+    name: 'Marcus',
+    surname: 'Santos',
+    email: 'myemail',
+    server: '@server.com',
+    cellNumber: 11986628317,
+    id: 1,
   },
 ];
 
@@ -46,18 +46,18 @@ const deleteContact = (phone) => {
   contactData.splice(foundIndex, 1);
 };
 
-const showAllContacts = (contact) => {
-  return contact.sort(contact.name);
+const showAllContacts = () => {
+  return contactData;
 };
-const showAll = showAllContacts(contactData);
+const showAll = showAllContacts();
+
 
 const searchByFullname = (term) => {
   let termLowerCase = term.toLowerCase();
   let contactFound = contactData.find((contact) => {
-    let nameLowerCase = contact.name.toLowerCase();
-    let surnameLowerCase = contact.surname.toLowerCase();
     return (
-      nameLowerCase === termLowerCase || surnameLowerCase === termLowerCase
+      contact.name.toLowerCase() === termLowerCase ||
+      contact.surname.toLowerCase() === termLowerCase
     );
   });
   return contactFound;
@@ -65,11 +65,9 @@ const searchByFullname = (term) => {
 const contactFound = searchByFullname('Dias');
 
 const capitalizeText = (text) => {
-  const lowerText = text.toLowerCase();
-  const splitedText = lowerText.split(' ');
-  let toUperCase = splitedText.map((nameLower) => {
-    return nameLower.charAt(0).toUpperCase() + nameLower.slice(1);
-  });
-  const jointText = toUperCase.join(' ');
-  return jointText;
+  const splitedText = text.toLowerCase().split(' ');
+  let toUperCase = splitedText.map(
+    (nameLower) => nameLower.charAt(0).toUpperCase() + nameLower.slice(1)
+  );
+  return toUperCase.join(' ');
 };
