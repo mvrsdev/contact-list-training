@@ -5,6 +5,7 @@ const contactData = [
     email: 'myemail',
     server: '@server.com',
     cellNumber: 11986628317,
+    id: 1,
   },
   {
     name: 'Thiago',
@@ -12,6 +13,7 @@ const contactData = [
     email: 'anothermail',
     server: '@server.com',
     cellNumber: 11989890909,
+    id: 2,
   },
 ];
 
@@ -35,15 +37,14 @@ const addNewContact = (firstName, lastName, emailAdress, mailServer, phone) => {
   };
 
   contactData.push(newEntry);
-  return alert('Contact added sucessfully!');
-}
+};
 
 const deleteContact = (phone) => {
   const foundIndex = contactData.findIndex((contact) => {
     return contact.cellNumber === phone;
   });
   contactData.splice(foundIndex, 1);
-  };
+};
 
 const showAllContacts = (contact) => {
   return contact.sort(contact.name);
