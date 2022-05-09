@@ -50,7 +50,15 @@ const showAllContacts = (contact) => {
 };
 const showAll = showAllContacts(contactData);
 
-function searchContactInfo(contact) {
-  return contact.name;
-}
-const searchContact = searchContactInfo(contactData[1]);
+const searchByFullname = (term) => {
+  let termLowerCase = term.toLowerCase();
+  let contactFound = contactData.find((contact) => {
+    let nameLowerCase = contact.name.toLowerCase();
+    let surnameLowerCase = contact.surname.toLowerCase();
+    return (
+      nameLowerCase === termLowerCase || surnameLowerCase === termLowerCase
+    );
+  });
+  return contactFound;
+};
+const contactFound = searchByFullname('Dias');
