@@ -20,18 +20,18 @@ const getContactFullName = (contactData) => {
 };
 const contactFullName = getContactFullName(contactData[1]);
 
-function getFullEmail(contactData) {
+const getFullEmail = (contactData) => {
   return `${contactData.email}${contactData.server}`;
-}
+};
 const fullEmail = getFullEmail(contactData[1]);
 
-function addNewContact() {
-  let newEntry = {
-    name: '',
-    surname: '',
-    email: '',
-    server: '',
-    cellNumber: '',
+const addNewContact = (firstName, lastName, emailAdress, mailServer, phone) => {
+  const newEntry = {
+    name: firstName,
+    surname: lastName,
+    email: emailAdress,
+    server: mailServer,
+    cellNumber: phone,
   };
 
   contactData.push(newEntry);
