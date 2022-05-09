@@ -62,3 +62,13 @@ const searchByFullname = (term) => {
   return contactFound;
 };
 const contactFound = searchByFullname('Dias');
+
+const capitalizeText = (text) => {
+  const lowerText = text.toLowerCase();
+  const splitedText = lowerText.split(' ');
+  let toUperCase = splitedText.map((nameLower) => {
+    return nameLower.charAt(0).toUpperCase() + nameLower.slice(1);
+  });
+  const jointText = toUperCase.join(' ');
+  return jointText;
+};
