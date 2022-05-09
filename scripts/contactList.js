@@ -38,22 +38,16 @@ const addNewContact = (firstName, lastName, emailAdress, mailServer, phone) => {
   return alert('Contact added sucessfully!');
 }
 
-function deleteContact () {
-  let deleteEntry = {
-    name: '',
-    surname: '',
-    email: '',
-    server: '',
-    cellNumber: '',
+const deleteContact = (phone) => {
+  const foundIndex = contactData.findIndex((contact) => {
+    return contact.cellNumber === phone;
+  });
+  contactData.splice(foundIndex, 1);
   };
 
-  contactData.pop(deleteEntry);
-  return alert('Contact deleted sucessfully!');
-}
-
-function showAllContacts(contact) {
+const showAllContacts = (contact) => {
   return contact.sort(contact.name);
-}
+};
 const showAll = showAllContacts(contactData);
 
 function searchContactInfo(contact) {
