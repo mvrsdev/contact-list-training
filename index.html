@@ -13,81 +13,71 @@
     <main>
       <section class="top">
         <form onsubmit="formSubmitHandler(event)" class="form-container">
-          <h1>Formulário</h1>
+          <h1>Cadastrar contatos</h1>
           <div class="row mb-3 g-1">
-            <label class="form-label"
-              >Nome:</label
-            >
+            <label class="form-label">Nome:</label>
             <div class="col">
               <input
                 name="firstName"
                 type="text"
                 class="form-control"
-                placeholder="Nome"
-              />
+                placeholder="Nome" />
             </div>
             <div class="col">
               <input
                 name="lastName"
                 type="text"
                 class="form-control"
-                placeholder="Sobrenome"
-              />
+                placeholder="Sobrenome" />
             </div>
           </div>
           <div class="row mb-3 g-1">
-            <label class="form-label"
-              >Email:</label
-            >
+            <label class="form-label">Email:</label>
             <div class="col">
               <input
                 name="emailAdress"
                 type="text"
                 class="form-control"
-                placeholder="email"
-              />
+                placeholder="email" />
             </div>
             <div class="col">
               <input
                 name="mailServer"
                 type="text"
                 class="form-control"
-                placeholder="@servidor.com"
-              />
+                placeholder="@servidor.com" />
             </div>
           </div>
           <div class="col-6 mb-2 flex-row allign-items-center">
-            <label class="form-label">
-              Celular:</label
-              >
-              <input
+            <label class="form-label"> Celular:</label>
+            <input
               name="phone"
               type="tel"
-              class="form-control "
-              placeholder="(11) 99999-9999"
-              />
-            </div>
-            <div class="btn-row ">
-              <button type="submit" class="btn btn-primary">Adicionar</button>
-            </div>
+              class="form-control"
+              placeholder="(11) 99999-9999" />
+          </div>
+          <div class="btn-row">
+            <button type="submit" class="btn btn-primary">Adicionar</button>
+          </div>
         </form>
       </section>
+
       <section class="bottom">
         <h1>Lista de Contatos</h1>
-        <div class="contact-list-container">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">
-                This is a longer card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </p>
+        <ul class="list-group">
+          <li class="list-group-item">
+            <img src="" />
+            <div class="contact-info-container">
+              <span class="contact-name">Nome</span>
+              <span class="contact-email">E-mail</span>
+              <span class="contact-mobile">Telefone</span>
             </div>
-          </div>
-        </div>
+          </li>
+        </ul>
       </section>
     </main>
+
+    <script src="scripts/jquery.min.js"></script>
     <script src="scripts/bootstrap.bundle.min.js"></script>
     <script src="scripts/contactList.js"></script>
   </body>

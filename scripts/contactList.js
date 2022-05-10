@@ -15,6 +15,22 @@ const contactData = [
     cellNumber: 11986628317,
     id: 1,
   },
+  {
+    name: 'Renan',
+    surname: 'Moura',
+    email: 'notanemail',
+    server: '@server.com',
+    cellNumber: 11986628317,
+    id: 1,
+  },
+  {
+    name: 'Kátia',
+    surname: 'Santos',
+    email: 'verymail',
+    server: '@server.com',
+    cellNumber: 11986628317,
+    id: 1,
+  },
 ];
 
 const getContactFullName = (contactData) => {
@@ -39,7 +55,7 @@ const addNewContact = (firstName, lastName, emailAdress, mailServer, phone) => {
 };
 
 const deleteContact = (phone) => {
-  const foundIndex = contactData.findIndex((contact) => {
+  let foundIndex = contactData.findIndex((contact) => {
     return contact.cellNumber === phone;
   });
   contactData.splice(foundIndex, 1);
@@ -60,7 +76,7 @@ const searchByFullname = (term) => {
     );
   });
   return contactFound;
-};
+}
 const contactFound = searchByFullname('Dias');
 
 const capitalizeText = (text) => {
@@ -72,9 +88,37 @@ const capitalizeText = (text) => {
 };
 
 const formSubmitHandler = (event) => {
+  // Get typed form data
   event.preventDefault();
-  addNewContact();
-  console.log(event)
+  const formData = getFormData(event.target);
+
+  // Add contact to the list
+  console.log(formData); // Look the magic in here
 };
 
-console.log();
+const renderContactsList = () => {
+  const CARD_LIST_SELECTOR = '.list-group';
+  const CARD_CLASS_SELECTOR = '.list-group-item';
+  const CARD_NAME_SELECTOR = '.contact-name';
+  const CARD_EMAIL_SELECTOR = '.contact-email';
+  const CARD_NUMBER_SELECTOR = '.contact-mobile';
+
+  contactData.forEach((item, index) => {
+    // Clone card element
+    const currenContactCard = index > 0 ? $(`${CARD_CLASS_SELECTOR}:first`).clone() : $(CARD_CLASS_SELECTOR);
+
+    // Fill clone with data
+    $(currenContactCard).find(CARD_NAME_SELECTOR).text(`${item.name} ${item.surname}`);
+    $(currenContactCard).find(CARD_EMAIL_SELECTOR).text(`${item.email}${item.server}`);
+    $(currenContactCard).find(CARD_NUMBER_SELECTOR).text(`${item.cellNumber}`);
+
+    // Add contact card to the list container
+    if (index > 0) {
+      currenContactCard.appendTo(CARD_LIST_SELECTOR);
+    }
+  });
+};
+
+
+const getFormData = form => Object.fromEntries(new FormData(form));
+renderContactsList();
