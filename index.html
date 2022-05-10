@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="styles/index.css" />
+    <title>Contatos</title>
+  </head>
+  <body>
+    <header></header>
+    <main>
+      <section class="top">
+        <form onsubmit="formSubmitHandler(event)" class="form-container">
+          <h1>Formulário</h1>
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label"
+              >Nome</label
+            >
+            <input
+              name="firstName"
+              type="text"
+              class="form-control"
+              id="exampleFormControlInput1"
+              placeholder="Nome"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label"
+              >Sobrenome</label
+            >
+            <input
+              name="lastName"
+              type="text"
+              class="form-control"
+              id="exampleFormControlInput1"
+              placeholder="Sobrenome"
+            />
+          </div>
+          <div class="row mb-3">
+            <label for="exampleFormControlInput1" class="form-label"
+              >Email</label
+            >
+            <div class="col">
+              <input
+                name="emailAdress"
+                type="text"
+                class="form-control"
+                placeholder="email"
+              />
+            </div>
+            <div class="col">
+              <input
+                name="mailServer"
+                type="text"
+                class="form-control"
+                placeholder="@servidor.com"
+              />
+            </div>
+          </div>
+          <div class="mb-2">
+            <label for="exampleFormControlInput1" class="form-label"
+              >Celular</label
+            >
+            <input
+              name="phone"
+              type="tel"
+              class="form-control"
+              id="exampleFormControlInput1"
+              placeholder="(11) 99999-9999"
+            />
+          </div>
+          <button type="submit" class="btn btn-primary">Adicionar</button>
+        </form>
+      </section>
+      <section class="bottom">
+        <h1>Lista de Contatos</h1>
+        <div class="contact-list-container">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">
+                This is a longer card with supporting text below as a natural
+                lead-in to additional content. This content is a little bit
+                longer.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="scripts/bootstrap.bundle.min.js"></script>
+    <script src="scripts/contactList.js"></script>
+  </body>
+</html>
