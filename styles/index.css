@@ -1,0 +1,15 @@
+main {
+  margin: 24px 10% ;
+}
+
+.bottom {
+  margin-top: 64px;
+}
+.contact-list-container {
+  display: flex;
+}
+
+.card {
+  width: 50%;
+}
+
