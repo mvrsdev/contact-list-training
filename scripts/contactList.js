@@ -35,7 +35,6 @@ const addNewContact = (firstName, lastName, emailAdress, mailServer, phone) => {
     server: mailServer,
     cellNumber: phone,
   };
-
   contactData.push(newEntry);
 };
 
@@ -70,4 +69,10 @@ const capitalizeText = (text) => {
     (nameLower) => nameLower.charAt(0).toUpperCase() + nameLower.slice(1)
   );
   return toUperCase.join(' ');
+};
+
+const formSubmitHandler = (event) => {
+  event.preventDefault();
+  addNewContact();
+  console.log(event)
 };
