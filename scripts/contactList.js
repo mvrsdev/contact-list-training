@@ -76,3 +76,5 @@ const formSubmitHandler = (event) => {
   addNewContact();
   console.log(event)
 };
+
+console.log();
