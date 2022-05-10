@@ -1,6 +1,5 @@
 main {
   margin: 24px 10% ;
-  background-color: #c1c1c1;
 }
 
 .bottom {
@@ -13,4 +12,9 @@ main {
 .card {
   width: 50%;
 }
+
+/* .btn-row {
+  display: flex;
+  justify-content: flex-end;
+} */
 
