@@ -2,32 +2,28 @@ const contactData = [
   {
     name: 'Thiago',
     surname: 'Dias',
-    email: 'anothermail',
-    server: '@server.com',
+    email: 'anothermail@server.com',
     cellNumber: 11989890909,
     id: 2,
   },
   {
     name: 'Marcus',
     surname: 'Santos',
-    email: 'myemail',
-    server: '@server.com',
+    email: 'myemail@server.com',
     cellNumber: 11986628317,
     id: 1,
   },
   {
     name: 'Renan',
     surname: 'Moura',
-    email: 'notanemail',
-    server: '@server.com',
+    email: 'notanemail@server.com',
     cellNumber: 11976439901,
     id: 1,
   },
   {
     name: 'Kátia',
     surname: 'Santos',
-    email: 'verymail',
-    server: '@server.com',
+    email: 'verymail@server.com',
     cellNumber: 11986664932,
     id: 1,
   },
@@ -37,16 +33,11 @@ const getContactFullName = contactData => {
   return `${contactData.name} ${contactData.surname}`;
 };
 
-const getFullEmail = contactData => {
-  return `${contactData.email}${contactData.server}`;
-};
-
-const addNewContact = (firstName, lastName, emailAddress, mailServer, phone) => {
+const addNewContact = (firstName, lastName, emailAddress, phone) => {
   const newEntry = {
-    name: firstName,
-    surname: lastName,
+    name: capitalizeText(firstName),
+    surname: capitalizeText(lastName),
     email: emailAddress,
-    server: mailServer,
     cellNumber: phone,
   };
   contactData.push(newEntry);
@@ -85,7 +76,12 @@ const capitalizeText = text => {
 const formSubmitHandler = event => {
   event.preventDefault();
   const formData = getFormData(event.target);
+  addNewContact(formData.firstName, formData.lastName, formData.emailAddress, formData.phone);
+  renderContactsList(contactData);
+  showSuccessMessage(`${formData.firstName} adicionado com sucesso!`, 5000);
+  clearFormData(event.target);
 };
+
 
 const renderContactsList = contactList => {
   const CARD_LIST_SELECTOR = '.list-group';
@@ -113,7 +109,7 @@ const renderContactsList = contactList => {
     $(currenContactCard)
       .find(CARD_NAME_SELECTOR)
       .text(getContactFullName(item));
-    $(currenContactCard).find(CARD_EMAIL_SELECTOR).text(getFullEmail(item));
+    $(currenContactCard).find(CARD_EMAIL_SELECTOR).text(item.email);
     $(currenContactCard).find(CARD_NUMBER_SELECTOR).text(`${item.cellNumber}`);
     $(currenContactCard)
       .find(DELETE_CONTACT_SELECTOR)
@@ -148,3 +144,4 @@ window.onload = () => {
     .getElementById('contact-form')
     .addEventListener('submit', formSubmitHandler);
 };
+
