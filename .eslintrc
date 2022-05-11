@@ -31,7 +31,7 @@
     "semi-style": ["error", "last"],
     "object-shorthand": ["error", "always"],
     "no-var": ["error"],
-    // "no-unused-vars": ["error"],
+    "no-unused-vars": ["error"],
     "no-unexpected-multiline": ["error"],
     "quotes": ["error", "single"]
   }
