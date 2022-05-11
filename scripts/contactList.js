@@ -129,4 +129,12 @@ const renderContactsList = () => {
 
 
 const getFormData = form => Object.fromEntries(new FormData(form));
+const showSuccessMessage = (message, duration) => {
+  const HIDDEN_CLASS = 'visually-hidden';
+  const alertBox = $('.alert-success');
+
+  alertBox.text(message);
+  alertBox.removeClass(HIDDEN_CLASS);
+  setTimeout(() => { alertBox.addClass(HIDDEN_CLASS); }, duration ? duration : 3000);
+};
 renderContactsList();
