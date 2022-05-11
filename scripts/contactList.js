@@ -111,6 +111,7 @@ const renderContactsList = () => {
     $(currenContactCard).find(CARD_NAME_SELECTOR).text(`${item.name} ${item.surname}`);
     $(currenContactCard).find(CARD_EMAIL_SELECTOR).text(`${item.email}${item.server}`);
     $(currenContactCard).find(CARD_NUMBER_SELECTOR).text(`${item.cellNumber}`);
+    $(currenContactCard).find(DELETE_CONTACT_SELECTOR).click(() => deleteContact(item.cellNumber));
 
     // Add contact card to the list container
     if (index > 0) {
