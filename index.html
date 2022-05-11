@@ -42,14 +42,6 @@
                 class="form-control"
                 placeholder="email@servidor.com" />
             </div>
-            <!-- <div class="col">
-              <input
-                required
-                name="mailServer"
-                type="text"
-                class="form-control"
-                placeholder="@servidor.com" />
-            </div> -->
           </div>
           <div class="col-6 mb-2 flex-row allign-items-center">
             <label class="form-label"> Celular:</label>
@@ -71,6 +63,19 @@
 
       <section class="bottom">
         <h1>Lista de Contatos</h1>
+        <div class="search-field gap-1">
+          <form class="form-container" id="search-form">
+            <input
+              name="search-field"
+              type="text"
+              class="form-control"
+              id="floatingInputValue"
+              placeholder="Buscar contato" />
+          </form>
+          <button type="submit" class="btn btn-outline-primary">
+            Buscar
+          </button>
+        </div>
         <ul class="list-group">
           <li class="list-group-item">
             <img src="" />
