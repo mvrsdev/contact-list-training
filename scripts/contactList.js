@@ -20,7 +20,7 @@ const contactData = [
     surname: 'Moura',
     email: 'notanemail',
     server: '@server.com',
-    cellNumber: 11986628317,
+    cellNumber: 11976439901,
     id: 1,
   },
   {
@@ -28,7 +28,7 @@ const contactData = [
     surname: 'Santos',
     email: 'verymail',
     server: '@server.com',
-    cellNumber: 11986628317,
+    cellNumber: 11986664932,
     id: 1,
   },
 ];
@@ -102,6 +102,13 @@ const renderContactsList = () => {
   const CARD_NAME_SELECTOR = '.contact-name';
   const CARD_EMAIL_SELECTOR = '.contact-email';
   const CARD_NUMBER_SELECTOR = '.contact-mobile';
+  const DELETE_CONTACT_SELECTOR = '.btn-delete-contact';
+
+  $(CARD_CLASS_SELECTOR).each(function(index) {
+    if (index > 0) {
+      $(this).remove();
+    }
+  });
 
   contactData.forEach((item, index) => {
     // Clone card element
