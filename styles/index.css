@@ -20,7 +20,7 @@ main {
 }
 
 .list-group-item:hover {
-   background-color: rgba(0, 0, 0, .03);
+  background-color: rgba(0, 0, 0, .03);
 }
 
 .list-group-item>img {
@@ -58,8 +58,3 @@ main {
 .btn-add-contact {
   margin-top: 24px;
 }
-
-/* .btn-row {
-  display: flex;
-  justify-content: flex-end;
-} */
