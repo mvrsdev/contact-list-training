@@ -93,6 +93,10 @@ const formSubmitHandler = (event) => {
   const formData = getFormData(event.target);
 
   // Add contact to the list
+  addNewContact(formData.firstName, formData.lastName, formData.emailAdress, formData.mailServer, formData.phone);
+  renderContactsList();
+  clearFormData(event.target);
+  showSuccessMessage(`${formData.firstName} added successfully!`, 5000);
   console.log(formData); // Look the magic in here
 };
 
@@ -129,6 +133,7 @@ const renderContactsList = () => {
 
 
 const getFormData = form => Object.fromEntries(new FormData(form));
+const clearFormData = form => $(form).trigger('reset');
 const showSuccessMessage = (message, duration) => {
   const HIDDEN_CLASS = 'visually-hidden';
   const alertBox = $('.alert-success');
