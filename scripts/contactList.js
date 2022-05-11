@@ -93,14 +93,10 @@ const formSubmitHandler = (event) => {
   const formData = getFormData(event.target);
 
   // Add contact to the list
-  addNewContact(formData.firstName, formData.lastName, formData.emailAdress, formData.mailServer, formData.phone);
-  renderContactsList();
-  clearFormData(event.target);
-  showSuccessMessage(`${formData.firstName} added successfully!`, 5000);
-  console.log(formData); // Look the magic in here
+  console.log(formData); // Look the magic here
 };
 
-const renderContactsList = () => {
+const renderContactsList = contactList => {
   const CARD_LIST_SELECTOR = '.list-group';
   const CARD_CLASS_SELECTOR = '.list-group-item';
   const CARD_NAME_SELECTOR = '.contact-name';
@@ -108,19 +104,20 @@ const renderContactsList = () => {
   const CARD_NUMBER_SELECTOR = '.contact-mobile';
   const DELETE_CONTACT_SELECTOR = '.btn-delete-contact';
 
+  // Reset list
   $(CARD_CLASS_SELECTOR).each(function(index) {
     if (index > 0) {
       $(this).remove();
     }
   });
 
-  contactData.forEach((item, index) => {
+  contactList.forEach((item, index) => {
     // Clone card element
     const currenContactCard = index > 0 ? $(`${CARD_CLASS_SELECTOR}:first`).clone() : $(CARD_CLASS_SELECTOR);
 
     // Fill clone with data
-    $(currenContactCard).find(CARD_NAME_SELECTOR).text(`${item.name} ${item.surname}`);
-    $(currenContactCard).find(CARD_EMAIL_SELECTOR).text(`${item.email}${item.server}`);
+    $(currenContactCard).find(CARD_NAME_SELECTOR).text(getContactFullName(item));
+    $(currenContactCard).find(CARD_EMAIL_SELECTOR).text(getFullEmail(item));
     $(currenContactCard).find(CARD_NUMBER_SELECTOR).text(`${item.cellNumber}`);
     $(currenContactCard).find(DELETE_CONTACT_SELECTOR).click(() => deleteContact(item.cellNumber));
 
@@ -130,7 +127,6 @@ const renderContactsList = () => {
     }
   });
 };
-
 
 const getFormData = form => Object.fromEntries(new FormData(form));
 const clearFormData = form => $(form).trigger('reset');
@@ -142,4 +138,8 @@ const showSuccessMessage = (message, duration) => {
   alertBox.removeClass(HIDDEN_CLASS);
   setTimeout(() => { alertBox.addClass(HIDDEN_CLASS); }, duration ? duration : 3000);
 };
-renderContactsList();
+
+window.onload = () => {
+  renderContactsList(contactData);
+  document.getElementById('contact-form').addEventListener('submit', formSubmitHandler);
+};
