@@ -58,3 +58,9 @@ main {
 .btn-add-contact {
   margin-top: 24px;
 }
+
+.search-field {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 8px;
+}
