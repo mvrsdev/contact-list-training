@@ -14,8 +14,15 @@ const contactData = [
     id: 2,
   },
   {
+    name: 'Marcus',
+    surname: 'Pagãos',
+    email: 'myemail@server.com',
+    cellNumber: 11986628317,
+    id: 2,
+  },
+  {
     name: 'Renan',
-    surname: 'Moura',
+    surname: 'Dias',
     email: 'notanemail@server.com',
     cellNumber: 11976439901,
     id: 3,
@@ -44,27 +51,21 @@ const addNewContact = (firstName, lastName, emailAddress, phone) => {
 };
 
 const deleteContact = id => {
-  console.log('log id: ', id);
   const foundIndex = contactData.findIndex(contact => {
     return contact.id === id;
   });
-  console.log('found index: ', foundIndex);
   contactData.splice(foundIndex, 1);
-};
-
-const showAllContacts = () => {
-  return contactData;
 };
 
 const searchByFullname = term => {
   const termLowerCase = term.toLowerCase();
-  const contactFound = contactData.find(contact => {
+  const contactsFound = contactData.filter(contact => {
     return (
       contact.name.toLowerCase() === termLowerCase ||
       contact.surname.toLowerCase() === termLowerCase
     );
   });
-  return contactFound;
+  return contactsFound;
 };
 
 const capitalizeText = text => {
@@ -89,6 +90,17 @@ const formSubmitHandler = event => {
   clearFormData(event.target);
 };
 
+const onSearchHandler = event => {
+  console.log('hello');
+  event.preventDefault();
+  if (searchTerm !== '') {
+    const searchResult = searchByFullname(getFormData(event.target).searchTerm);
+    renderContactsList(searchResult);
+  } else {
+    renderContactsList(contactData);
+  }
+};
+
 const renderContactsList = contactList => {
   const CARD_LIST_SELECTOR = '.list-group';
   const CARD_CLASS_SELECTOR = '.list-group-item';
@@ -98,7 +110,7 @@ const renderContactsList = contactList => {
   const DELETE_CONTACT_SELECTOR = '.btn-delete-contact';
 
   // Reset list
-  $(CARD_CLASS_SELECTOR).each(function (index) {
+  $(CARD_CLASS_SELECTOR).each(function(index) {
     if (index > 0) {
       $(this).remove();
     }
@@ -108,7 +120,7 @@ const renderContactsList = contactList => {
     // Clone card element
     const currenContactCard =
       index > 0
-        ? $(`${CARD_CLASS_SELECTOR}:first`).clone(false, false)
+        ? $(`${CARD_CLASS_SELECTOR}:first`).clone()
         : $(CARD_CLASS_SELECTOR);
 
     // Fill clone with data
@@ -122,7 +134,6 @@ const renderContactsList = contactList => {
       .click(() => {
         deleteContact(item.id);
         renderContactsList(contactData);
-        console.log(contactData);
       });
 
     // Add contact card to the list container
@@ -153,4 +164,7 @@ window.onload = () => {
   document
     .getElementById('contact-form')
     .addEventListener('submit', formSubmitHandler);
+  document
+    .getElementById('search-form')
+    .addEventListener('submit', onSearchHandler);
 };
