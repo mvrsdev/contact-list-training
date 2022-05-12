@@ -1,3 +1,4 @@
+const HIDDEN_CLASS = 'visually-hidden';
 const contactData = [
   {
     name: 'Thiago',
@@ -92,13 +93,20 @@ const formSubmitHandler = event => {
 
 const onSearchHandler = event => {
   event.preventDefault();
-  searchData = getFormData(event.target);
-  const searchResult = searchByFullname(searchData.searchTerm);
-  if (searchResult !== '') {
+  const searchTerm = getFormData(event.target).searchTerm;
+  if (searchTerm !== '') {
+    const searchResult = searchByFullname(searchTerm);
     renderContactsList(searchResult);
   } else {
-    renderContactsList(contactData);
+    renderContactsList(getSortedList(contactData));
   }
+};
+
+const getSortedList = myList => {
+  return myList.sort((a, b) =>
+    // eslint-disable-next-line implicit-arrow-linebreak
+    `${a.name}${a.surname}`.localeCompare(`${b.name}${b.surname}`)
+  );
 };
 
 const renderContactsList = contactList => {
@@ -108,45 +116,56 @@ const renderContactsList = contactList => {
   const CARD_EMAIL_SELECTOR = '.contact-email';
   const CARD_NUMBER_SELECTOR = '.contact-mobile';
   const DELETE_CONTACT_SELECTOR = '.btn-delete-contact';
+  const NO_RESULT_MESSAGE_SELECTOR = '.alert-danger';
+
+  $(NO_RESULT_MESSAGE_SELECTOR).addClass(HIDDEN_CLASS);
 
   // Reset list
-  $(CARD_CLASS_SELECTOR).each(function(index) {
+  $(CARD_CLASS_SELECTOR).show();
+  $(CARD_CLASS_SELECTOR).each(function (index) {
     if (index > 0) {
       $(this).remove();
     }
   });
 
-  contactList.forEach((item, index) => {
-    // Clone card element
-    const currenContactCard =
-      index > 0
-        ? $(`${CARD_CLASS_SELECTOR}:first`).clone()
-        : $(CARD_CLASS_SELECTOR);
+  if (contactList.length > 0) {
+    contactList.forEach((item, index) => {
+      // Clone card element
+      const currenContactCard =
+        index > 0
+          ? $(`${CARD_CLASS_SELECTOR}:first`).clone()
+          : $(CARD_CLASS_SELECTOR);
 
-    // Fill clone with data
-    $(currenContactCard)
-      .find(CARD_NAME_SELECTOR)
-      .text(getContactFullName(item));
-    $(currenContactCard).find(CARD_EMAIL_SELECTOR).text(item.email);
-    $(currenContactCard).find(CARD_NUMBER_SELECTOR).text(`${item.cellNumber}`);
-    $(currenContactCard)
-      .find(DELETE_CONTACT_SELECTOR)
-      .click(() => {
-        deleteContact(item.id);
-        renderContactsList(contactData);
-      });
+      // Fill clone with data
+      $(currenContactCard)
+        .find(CARD_NAME_SELECTOR)
+        .text(getContactFullName(item));
+      $(currenContactCard).find(CARD_EMAIL_SELECTOR).text(item.email);
+      $(currenContactCard)
+        .find(CARD_NUMBER_SELECTOR)
+        .text(`${item.cellNumber}`);
+      $(currenContactCard)
+        .find(DELETE_CONTACT_SELECTOR)
+        .click(() => {
+          deleteContact(item.id);
+          renderContactsList(contactData);
+        });
 
-    // Add contact card to the list container
-    if (index > 0) {
-      currenContactCard.appendTo(CARD_LIST_SELECTOR);
-    }
-  });
+      // Add contact card to the list container
+      if (index > 0) {
+        currenContactCard.appendTo(CARD_LIST_SELECTOR);
+      }
+    });
+  } else {
+    // TODO: Print "no elements" message
+    $(CARD_CLASS_SELECTOR).hide();
+    $(NO_RESULT_MESSAGE_SELECTOR).removeClass(HIDDEN_CLASS);
+  }
 };
 
 const getFormData = form => Object.fromEntries(new FormData(form));
 const clearFormData = form => $(form).trigger('reset');
 const showSuccessMessage = (message, duration) => {
-  const HIDDEN_CLASS = 'visually-hidden';
   const alertBox = $('.alert-success');
 
   alertBox.text(message);
