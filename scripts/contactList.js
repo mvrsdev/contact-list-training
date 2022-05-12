@@ -91,10 +91,10 @@ const formSubmitHandler = event => {
 };
 
 const onSearchHandler = event => {
-  console.log('hello');
   event.preventDefault();
-  if (searchTerm !== '') {
-    const searchResult = searchByFullname(getFormData(event.target).searchTerm);
+  searchData = getFormData(event.target);
+  const searchResult = searchByFullname(searchData.searchTerm);
+  if (searchResult !== '') {
     renderContactsList(searchResult);
   } else {
     renderContactsList(contactData);
